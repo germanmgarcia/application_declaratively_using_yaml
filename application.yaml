@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata: 
+  name: microbot-application
+  namespace: argocd
+spec: 
+  destination: 
+    namespace: microbot
+    server: "https://kubernetes.default.svc"
+  project: default
+  source: 
+    path: .
+    repoURL: "https://github.com/germanmgarcia/microbot_minikube"
+    targetRevision: main
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
